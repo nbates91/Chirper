@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from './Components/Input';
+import Timeline from './Components/Timeline';
 
 class App extends Component {
 	render() {
@@ -25,8 +25,7 @@ class App extends Component {
 						<p class="lead text-right">...even if the world could care less.</p>
 					</div>
 				</div>
-
-				<Input />
+				<Timeline />
 			</React.Fragment>
 		);
 	}

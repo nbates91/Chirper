@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import InputForm from './Input';
 
 export default class Timeline extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			message: '',
 			chirps: [
 				{
 					message: 'Thanks for using chirper!',
@@ -21,5 +21,39 @@ export default class Timeline extends Component {
 				},
 			],
 		};
+	}
+
+	handleMessage(value) {
+		let newChirps = [...this.state.chirps];
+		let newChirpObj = {
+			message: value,
+			id: newChirps.length,
+		};
+		newChirps.push(newChirpObj);
+		this.setState({ chirps: newChirps });
+	}
+	render() {
+		let chirps = this.state.chirps.map(chirp => {
+			return (
+				<React.Fragment>
+					<div class="card col-md-4" style={{ width: '18rem' }}>
+						<div class="card-body">
+							<h5 class="card-title">@Somebody</h5>
+							<p class="card-text">{chirp.message}</p>
+						</div>
+					</div>
+				</React.Fragment>
+			);
+		});
+		return (
+			<div>
+				<InputForm
+					message={value => {
+						this.handleMessage(value);
+					}}
+				/>
+				<div className="row">{chirps}</div>
+			</div>
+		);
 	}
 }
